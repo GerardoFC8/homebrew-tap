@@ -5,21 +5,21 @@
 class Claumeter < Formula
   desc "Interactive TUI for AI assistant token usage analysis"
   homepage "https://github.com/GerardoFC8/claumeter"
-  version "0.6.0"
+  version "0.7.0"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/GerardoFC8/claumeter/releases/download/v0.6.0/claumeter_0.6.0_darwin_x86_64.tar.gz"
-      sha256 "809f5d161cf4f0cfa87cb2e6943b87cc06c0773c5227dece44efce7de35100c4"
+      url "https://github.com/GerardoFC8/claumeter/releases/download/v0.7.0/claumeter_0.7.0_darwin_x86_64.tar.gz"
+      sha256 "664cc64dbc454d2183010fb9e5f4ede2b1085bf83295599f8b587954ddc80ec8"
 
       define_method(:install) do
         bin.install "claumeter"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/GerardoFC8/claumeter/releases/download/v0.6.0/claumeter_0.6.0_darwin_arm64.tar.gz"
-      sha256 "c486e54594fe6f6bb16ddb723c11e74fc128000288025cad9887d3bb749536e5"
+      url "https://github.com/GerardoFC8/claumeter/releases/download/v0.7.0/claumeter_0.7.0_darwin_arm64.tar.gz"
+      sha256 "8d4ab95bc354d6b0c1ea6cb5fa04e080b891b9b911aa6d22e07c5e52de22c298"
 
       define_method(:install) do
         bin.install "claumeter"
@@ -29,15 +29,15 @@ class Claumeter < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/GerardoFC8/claumeter/releases/download/v0.6.0/claumeter_0.6.0_linux_x86_64.tar.gz"
-      sha256 "358d2073ee8f48c63ae506dc9802b05c9e24741941ad506aea12d4071f084abe"
+      url "https://github.com/GerardoFC8/claumeter/releases/download/v0.7.0/claumeter_0.7.0_linux_x86_64.tar.gz"
+      sha256 "0204ff4f3b3ca0da68fc9358e88c4079b6d6f92277f6a32878eca02817d5a324"
       define_method(:install) do
         bin.install "claumeter"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/GerardoFC8/claumeter/releases/download/v0.6.0/claumeter_0.6.0_linux_arm64.tar.gz"
-      sha256 "97d29cc16e43d2a8c042b123608c14443de1343b71a460c975bf02f8f2b797c7"
+      url "https://github.com/GerardoFC8/claumeter/releases/download/v0.7.0/claumeter_0.7.0_linux_arm64.tar.gz"
+      sha256 "0ab2a94356cd38fa1ff5bf39016b7f89151d3295de586f01631062c1814467bf"
       define_method(:install) do
         bin.install "claumeter"
       end
