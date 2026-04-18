@@ -5,21 +5,21 @@
 class Claumeter < Formula
   desc "Interactive TUI for AI assistant token usage analysis"
   homepage "https://github.com/GerardoFC8/claumeter"
-  version "0.3.1"
+  version "0.4.0"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/GerardoFC8/claumeter/releases/download/v0.3.1/claumeter_0.3.1_darwin_x86_64.tar.gz"
-      sha256 "204f1d984bc8cb602dd59e505720d9d11ebd08537de98eb4f0cf7a727580e2ee"
+      url "https://github.com/GerardoFC8/claumeter/releases/download/v0.4.0/claumeter_0.4.0_darwin_x86_64.tar.gz"
+      sha256 "ea8cecd5260bd56f3af7026bf966016b0a3893f5686f42c006a1a0f1e41539c1"
 
       define_method(:install) do
         bin.install "claumeter"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/GerardoFC8/claumeter/releases/download/v0.3.1/claumeter_0.3.1_darwin_arm64.tar.gz"
-      sha256 "fd5cd55cf820c8d5f60b0d78f82c8402c2e3d2848d9b0f37ad49bcb68c235beb"
+      url "https://github.com/GerardoFC8/claumeter/releases/download/v0.4.0/claumeter_0.4.0_darwin_arm64.tar.gz"
+      sha256 "676a9d12b08662094be5b7c7dab214f4978898bc0e7f31388a8959c42bffa124"
 
       define_method(:install) do
         bin.install "claumeter"
@@ -29,18 +29,40 @@ class Claumeter < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/GerardoFC8/claumeter/releases/download/v0.3.1/claumeter_0.3.1_linux_x86_64.tar.gz"
-      sha256 "26912608bc5940a27cc4e37c97601d7a7ef6f752d4c536a0b75bc5823e83394e"
+      url "https://github.com/GerardoFC8/claumeter/releases/download/v0.4.0/claumeter_0.4.0_linux_x86_64.tar.gz"
+      sha256 "af725df3643ccfc992f43e9c3741c714b68a6972f77939242c14328588d017dc"
       define_method(:install) do
         bin.install "claumeter"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/GerardoFC8/claumeter/releases/download/v0.3.1/claumeter_0.3.1_linux_arm64.tar.gz"
-      sha256 "4aa427d0a3c30b74ec455be1775946d7903ad66d758e59484d1a62a97642a429"
+      url "https://github.com/GerardoFC8/claumeter/releases/download/v0.4.0/claumeter_0.4.0_linux_arm64.tar.gz"
+      sha256 "65e639838d13784e66e2571111aa990170464cf7822e85b5e3b2e3cdb4427450"
       define_method(:install) do
         bin.install "claumeter"
       end
     end
+  end
+
+  def caveats
+    <<~EOS
+      To run claumeter as a background service (widgets will use it
+      automatically for real-time data):
+
+        brew services start claumeter
+
+      Then:
+        - curl http://127.0.0.1:7777/today
+        - Widgets (DMS, Waybar) auto-upgrade to rich mode.
+
+      Stop it later with `brew services stop claumeter`.
+    EOS
+  end
+
+  service do
+    run [opt_bin/"claumeter", "serve", "--host", "127.0.0.1", "--port", "7777"]
+    keep_alive true
+    log_path var/"log/claumeter.log"
+    error_log_path var/"log/claumeter.err.log"
   end
 end
